@@ -75,3 +75,43 @@ SELECT neutered, SUM(escape_attmepts) FROM animals GROUP BY neutered;
 SELECT MIN(weight_kg) , MAX(weight_kg) FROM animals;
 
 SELECT AVG(escape_attmepts) FROM animals WHERE date_of_birth >= '1990-01-01' AND date_of_birth <= '2000-12-31';
+
+-------------------------------------------------------------------
+
+SELECT animals.name, owners.full_name As owners
+FROM animals
+JOIN owners ON animals.owners_id = owners.id
+WHERE animals.owners_id = 5;
+
+
+SELECT animals.name, species.name As Species
+FROM animals
+JOIN species ON animals.species_id = species.id
+WHERE animals.species_id = 1;
+
+SELECT owners.full_name, animals.name
+FROM owners
+LEFT JOIN animals ON owners.id = animals.owners_id;
+
+SELECT species.name, COUNT(animals.species_id)
+FROM animals
+JOIN species ON animals.species_id = species.id
+GROUP BY species.name;
+
+SELECT OWNERS.full_name, animals.name
+FROM animals
+LEFT JOIN owners ON owners.id = animals.owners_id
+WHERE owners.id = 3 AND animals.species_id = 2;
+
+SELECT owners.full_name As the_owner, animals.name
+FROM animals
+JOIN owners 
+ON animals.owners_id = (SELECT owners_id FROM owners WHERE owners.full_name = 'Dean Winchester')
+WHERE escape_attmepts = 0;
+
+
+SELECT owners.full_name, COUNT(animals.owners_id) animals_number
+FROM animals JOIN owners
+ON animals.owners_id = owners.id
+GROUP BY owners.full_name
+ORDER BY animals_number DESC LIMIT 1;
