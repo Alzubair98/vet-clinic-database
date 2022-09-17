@@ -115,3 +115,49 @@ FROM animals JOIN owners
 ON animals.owners_id = owners.id
 GROUP BY owners.full_name
 ORDER BY animals_number DESC LIMIT 1;
+
+------------------------ LAST ANIMAL SEEN BY wILLIAM
+
+SELECT * FROM visits 
+WHERE vets_id = 1 ORDER BY date_of_visit DESC LIMIT 1;
+
+------------------------ DIFFERENT ANIMAL STEPHANIE SEE
+
+SELECT COUNT(animals_id) FROM visits 
+WHERE vets_id = 3;
+
+------------------------ List all vets and their specialties, including vets with no specialties
+
+SELECT name ,  specializations.vets_id, specializations.species_id FROM vets
+left JOIN specializations ON vets.id = vets_id; 
+
+------------------------all animals that visited Stephanie Mendez between April 1st and August 30th, 2020.
+
+SELECT * FROM visits WHERE vets_id = 3
+AND date_of_visit >= '2020-04-01' AND date_of_visit <= '2020-08-30';
+
+------------------------max visit
+
+SELECT animals.name , COUNT(visits.animals_id) AS num_of_visits FROM visits
+JOIN animals ON animals.id = visits.animals_id
+GROUP BY animals.name
+ORDER BY num_of_visits DESC LIMIT 1;
+
+------------------------Who was Maisy Smith's first visit?
+
+SELECT * FROM visits WHERE vets_id = 2 
+ORDER BY date_of_visit LIMIT 1 ;
+
+------------------------ Detials?
+
+SELECT animals.* , vets.* , visits.date_of_visit FROM visits
+JOIN vets ON vets.id = visits.vets_id
+JOIN animals ON animals.id = visits.animals_id
+ORDER BY date_of_visit DESC LIMIT 1;
+
+------------------------ How many visits were with a vet that did not specialize in that animal's species?
+
+SELECT COUNT(animals_id) FROM visits WHERE vets_id = 2;
+
+
+

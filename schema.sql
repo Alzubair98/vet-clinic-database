@@ -41,3 +41,26 @@ FOREIGN KEY(species_id) REFERENCES species(id);
 ALTER TABLE animals 
 ADD CONSTRAINT fk_owners
 FOREIGN KEY(owners_id) REFERENCES owners(id);
+
+
+---------------- Add Join Table 
+CREATE TABLE vet (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR,
+    age INT,
+    date_of_graduation DATE
+);
+
+CREATE TABLE specializations(
+    vets_id INT REFERENCES vets(id),
+    species_id INT REFERENCES species(id),
+    PRIMARY KEY(vets_id, species_id)
+);
+
+
+CREATE TABLE visits(
+    animals_id INT REFERENCES animals(id),
+    vets_id INT REFERENCES vets(id),
+    date_of_visit DATE,
+    PRIMARY KEY(animals_id, vets_id, date_of_visits)
+);
