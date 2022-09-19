@@ -160,4 +160,9 @@ ORDER BY date_of_visit DESC LIMIT 1;
 SELECT COUNT(animals_id) FROM visits WHERE vets_id = 2;
 
 
+-----------------------------------------------
+SELECT COUNT(*) FROM visits WHERE animals_id = 4;
 
+SELECT * FROM visits WHERE vets_id =2;
+
+SELECT * FROM owners WHERE email = 'owner_18327@mail.com';
