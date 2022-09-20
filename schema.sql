@@ -71,3 +71,4 @@ CREATE INDEX animals_id ON visits (animals_id);
 CREATE INDEX vets_id ON visits (vets_id);
 
 CREATE INDEX owners_id ON owners (email);
+
