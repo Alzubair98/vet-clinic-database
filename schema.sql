@@ -64,3 +64,11 @@ CREATE TABLE visits(
     date_of_visit DATE,
     PRIMARY KEY(animals_id, vets_id, date_of_visits)
 );
+------------------------ second week
+
+CREATE INDEX animals_id ON visits (animals_id);
+
+CREATE INDEX vets_id ON visits (vets_id);
+
+CREATE INDEX owners_id ON owners (email);
+

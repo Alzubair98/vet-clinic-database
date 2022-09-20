@@ -154,3 +154,9 @@ VALUES (10, 3, '2020-05-24');
 
 INSERT INTO visits(animals_id, vets_id, date_of_visit)
 VALUES (10, 1, '2021-01-11');
+
+
+--------------SECOND WEEK
+-- BECAUSE OF DUPLICATE DATA IN VISITS IM GOING TO DELETE EVERY THING FROM IT
+
+DELETE FROM visit;
